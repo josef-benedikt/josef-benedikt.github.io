@@ -18,6 +18,46 @@
     
 </body>
 
+    <script>
+    const loginForm = document.querySelector('.form-columns');
+
+    loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent immediate page reload
+
+        const email = document.getElementById('Email').value;
+        const password = document.getElementById('password').value;
+
+        // 1. Basic Validation
+        if (!email || !password) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        try {
+            console.log("Attempting to login...");
+            
+            // 2. Simulated Async API Call
+            const response = await simulateServerRequest({ email, password });
+
+            if (response.success) {
+                alert("Login successful! Redirecting...");
+                window.location.href = "index.html"; // Redirect after success
+            }
+        } catch (error) {
+            alert("Login failed: " + error);
+        }
+    });
+
+    // Function to simulate a network delay
+    function simulateServerRequest(data) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ success: true });
+            }, 1500); // 1.5 second delay
+        });
+    }
+</script>
+
 <nav class="sidebar">
     <h2>Navigation Bar</h2>
     <li><a href="index.html">Home</a></li>
@@ -49,4 +89,5 @@
 <footer>
     <p class="footer-login">Desserts by Josef - Copyright 2026</p>
 </footer>
+
 </html>
