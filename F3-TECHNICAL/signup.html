@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Desserts by Josef</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header">
+    <img src="https://images.seeklogo.com/logo-png/29/2/sweet-dessert-logo-png_seeklogo-298730.png" class="logo">
+    <h2>Desserts by Josef</h2> 
+    <h3>High Quality and Affordable!</h3>
+    </div>
+</header>
+    
+</body>
+
+    <script>
+    const signupForm = document.querySelector('.signup-form');
+
+    signupForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        // Collecting values using IDs from our layout
+        const data = {
+            firstName: document.getElementById('fname').value,
+            lastName: document.getElementById('lname').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('pass').value,
+            confirmPassword: document.getElementById('confirm-pass').value
+        };
+
+        // 1. Validation: Check for empty fields
+        if (Object.values(data).some(value => value === "")) {
+            alert("All fields are required.");
+            return;
+        }
+
+        // 2. Validation: Match Passwords
+        if (data.password !== data.confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        try {
+            // 3. Async call to "Register" the user
+            const result = await simulateServerRequest(data);
+            
+            if (result.success) {
+                alert("Account created successfully!");
+                window.location.href = "login.html"; 
+            }
+        } catch (err) {
+            alert("Error creating account: " + err);
+        }
+    });
+
+    function simulateServerRequest(data) {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve({ success: true }), 2000);
+        });
+    }
+</script>
+
+<nav class="sidebar">
+    <h2>Navigation Bar</h2>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="profile.html">User Profile</a></li>
+    <li><a href="cart.html">Shopping Cart</a></li>
+</nav>
+</nav>
+
+<div class="content">
+    <h1>Sign Up</h1>
+
+    <form class="signup-form">
+        <div class="form-columns">
+            
+            <div class="column">
+                <label for="fname">First Name</label><br>
+                <input type="text" id="fname" name="fname" placeholder="First Name"><br><br>
+
+                <label for="lname">Last Name</label><br>
+                <input type="text" id="lname" name="lname" placeholder="Last Name"><br><br>
+
+                <label for="email">Email Address</label><br>
+                <input type="email" id="email" name="email" placeholder="Email Address"><br><br>
+
+                <label for="pass">Password</label><br>
+                <input type="password" id="pass" name="pass" placeholder="Password">
+            </div>
+
+            <div class="column">
+                <label for="confirm-pass">Confirm Password</label><br>
+                <input type="password" id="confirm-pass" name="confirm-pass" placeholder="Confirm Password"><br><br>
+
+                <label for="address">Home Address</label><br>
+                <input type="text" id="address" name="address" placeholder="Home Address"><br><br>
+
+                <label for="mobile">Mobile Number</label><br>
+                <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="submit"><a href="index.html">Login</a></button>
+            <button type="button" class="submit"><a href="login.html">Have an account? Login here!</a></button>
+        </div>
+    </form> 
+</div>s
+
+<footer>
+    <p class="footer-signup">Desserts by Josef - Copyright 2026</p>
+</footer>
+
+</html>
