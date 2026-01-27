@@ -18,13 +18,12 @@
     
 <nav class="sidebar">
     <h2>Navigation Bar</h2>
-    <ul>
         <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="profile.html">User Profile</a></li>
         <li><a href="cart.html">Shopping Cart</a></li>
-    </ul>
 </nav>
 
 <div class="content">
@@ -62,52 +61,36 @@
 
 <script>
 
-    window.onload = function() {
-        const rawData = localStorage.getItem('userCart');
-        if (rawData) {
-            const data = JSON.parse(rawData);
-            const summaryDiv = document.getElementById('orderSummary');
-            
-            summaryDiv.innerHTML = `
-                <p>Vanilla Ice Cream (${data.vanilla.qty}) - P${data.vanilla.qty * data.vanilla.price}</p>
-                <p>Chocolate Chip Cookies (${data.cookie.qty}) - P${data.cookie.qty * data.cookie.price}</p>
-            `;
-            document.getElementById('displayTotal').innerText = "Total: P" + data.total;
-        }
-    };
-
+   window.onload = function() {
+    const rawData = localStorage.getItem('userCart');
+    const summaryDiv = document.getElementById('orderSummary');
     
-    const checkoutForm = document.getElementById('checkoutForm');
-    checkoutForm.addEventListener('submit', async function(event) {
-        event.preventDefault();
-        
-        const btn = document.getElementById('submitBtn');
-        const status = document.getElementById('statusMessage');
-        
-        btn.disabled = true;
-        btn.innerText = "Processing Order...";
-        status.innerText = "Verifying payment details...";
+    if (rawData) {
+        const data = JSON.parse(rawData);
+        let html = "";
 
-        try {
-            
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            status.style.color = "green";
-            status.innerText = "Success! Your desserts are on the way.";
-            
-            
-            localStorage.removeItem('userCart');
+        
+        if(data.vanilla.qty > 0) html += `<p>Vanilla Ice Cream (${data.vanilla.qty}) - P${data.vanilla.qty * 100}</p>`;
+        if(data.cookie.qty > 0)  html += `<p>Chocolate Chip Cookie (${data.cookie.qty}) - P${data.cookie.qty * 50}</p>`;
+        if(data.cake.qty > 0)    html += `<p>Dark Chocolate Cake (${data.cake.qty}) - P${data.cake.qty * 75}</p>`;
+        if(data.blue.qty > 0)    html += `<p>Blueberry Muffin (${data.blue.qty}) - P${data.blue.qty * 80}</p>`;
+        if(data.peach.qty > 0)   html += `<p>Peach Muffin (${data.peach.qty}) - P${data.peach.qty * 80}</p>`;
+        
+        summaryDiv.innerHTML = html || "<p>Your cart is empty.</p>";
+        document.getElementById('displayTotal').innerText = "Total: P" + data.total;
+    }
+};
 
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 2000);
-            
-        } catch (error) {
-            status.style.color = "red";
-            status.innerText = "There was an error processing your request.";
-            btn.disabled = false;
-        }
-    });
+
+document.getElementById('checkoutForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.innerText = "Processing...";
+    
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    window.location.href = "receipt.html";
+});
 </script>
 
 </body>

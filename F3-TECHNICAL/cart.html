@@ -18,13 +18,12 @@
     
 <nav class="sidebar">
     <h2>Navigation</h2>
-    <ul>
         <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="profile.html">User Profile</a></li>
         <li><a href="cart.html">Shopping Cart</a></li>
-    </ul>
 </nav>
 
 <div class="content">
@@ -56,8 +55,32 @@
             <p class="product-name">Dark Chocolate Cake</p>
             <p>Price: P<span class="unit-price">75</span></p>
             <label>Qty: </label>
-            <input type="number" class="qty" value="0" min="0" data-price="50">
+            <input type="number" class="qty" value="0" min="0" data-price="75">
         </div>
+        
+        <br>
+
+     <div class="cart-item">
+        <img src="https://thefirstyearblog.com/wp-content/uploads/2025/06/Peach-Muffins-Square-2025-300x300.png" class="cart-thumb">
+        <div class="item-details">
+            <p class="product-name">Peach Muffins</p>
+            <p>Price: P<span class="unit-price">80</span></p>
+            <label>Qty: </label>
+            <input type="number" class="qty" value="0" min="0" data-price="80">
+        </div>
+     </div>
+
+     <br>
+
+     <div class="cart-item">
+        <img src="https://thefirstyearblog.com/wp-content/uploads/2026/01/Healthy-Blueberry-Muffins-Square-2026.png" class="cart-thumb">
+        <div class="item-details">
+            <p class="product-name">Blueberry Muffins</p>
+            <p>Price: P<span class="unit-price">80</span></p>
+            <label>Qty: </label>
+            <input type="number" class="qty" value="0" min="0" data-price="80">
+        </div>
+     </div>
 
     <hr>
     <div class="total-section">
@@ -94,13 +117,24 @@
 
     
 function proceedToCheckout() {
-    const vanillaQty = document.querySelector('.qty').value;
-    const cookieQty = document.querySelectorAll('.qty')[1].value;
+    const inputs = document.querySelectorAll('.qty');
+    
+    // Assign each unique input [0, 1, 2, 3, 4]
+    const vQty = parseInt(inputs[0].value) || 0;
+    const cQty = parseInt(inputs[1].value) || 0;
+    const cakeQty = parseInt(inputs[2].value) || 0;
+    const blueQty = parseInt(inputs[3].value) || 0; // Index 3
+    const peachQty = parseInt(inputs[4].value) || 0; // Index 4
+    
+    const total = (vQty * 100) + (cQty * 50) + (cakeQty * 75) + (blueQty * 80) + (peachQty * 80);
     
     const cartData = {
-        vanilla: { qty: vanillaQty, price: 100 },
-        cookie: { qty: cookieQty, price: 50 },
-        total: (vanillaQty * 100) + (cookieQty * 50)
+        vanilla: { qty: vQty, price: 100 },
+        cookie: { qty: cQty, price: 50 },
+        cake: { qty: cakeQty, price: 75 },
+        blue: { qty: blueQty, price: 80 }, // Consistent name 'blue'
+        peach: { qty: peachQty, price: 80 },
+        total: total
     };
     
     localStorage.setItem('userCart', JSON.stringify(cartData));

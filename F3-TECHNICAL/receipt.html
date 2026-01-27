@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt - Desserts by Josef</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header">
+        <img src="https://images.seeklogo.com/logo-png/29/2/sweet-dessert-logo-png_seeklogo-298730.png" class="logo">
+        <h2>Desserts by Josef</h2> 
+        <h3>High Quality and Affordable!</h3>
+    </div>
+</header>
+    
+<nav class="sidebar">
+    <h2>Navigation Bar</h2>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="profile.html">User Profile</a></li>
+        <li><a href="cart.html">Shopping Cart</a></li>
+</nav>
+
+<div class="content">
+    <h1>E-Receipt</h1>
+    
+    <div id="orderSummary" class="order-details">
+        <p>Loading your receipt...</p>
+    </div>
+
+    <hr>
+    <h2 id="displayTotal">Total: P0</h2>
+
+
+        </div>
+    </form>
+    <p id="statusMessage" style="text-align: center; font-weight: bold;"></p>
+</div>
+
+<footer>
+    <p class="footer-about">Desserts by Josef - Copyright 2026</p>
+</footer>
+
+<script>
+
+    window.onload = function() {
+    const rawData = localStorage.getItem('userCart');
+    const summaryDiv = document.getElementById('orderSummary');
+    
+    if (rawData) {
+        const data = JSON.parse(rawData);
+        let html = `<h3>Order Successful!</h3><p>Order ID: #JB-${Math.floor(Math.random()*1000)}</p><hr>`;
+
+        if(data.vanilla.qty > 0) html += `<p>Vanilla Ice Cream x ${data.vanilla.qty}</p>`;
+        if(data.cookie.qty > 0)  html += `<p>Chocolate Chip Cookie x ${data.cookie.qty}</p>`;
+        if(data.cake.qty > 0)    html += `<p>Dark Chocolate Cake x ${data.cake.qty}</p>`;
+        if(data.blue.qty > 0)    html += `<p>Blueberry Muffin x ${data.blue.qty}</p>`;
+        if(data.peach.qty > 0)   html += `<p>Peach Muffin x ${data.peach.qty}</p>`;
+        
+        summaryDiv.innerHTML = html;
+        document.getElementById('displayTotal').innerText = "Total Paid: P" + data.total;
+        
+        
+        localStorage.removeItem('userCart');
+    }
+};
+</script>
+
+</body>
+</html>
