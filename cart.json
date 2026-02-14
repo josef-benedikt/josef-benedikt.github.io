@@ -1,7 +1,0 @@
-[
-  { "id": "vanilla", "name": "Vanilla Ice Cream", "price": 100, "image": "https://delightfuladventures.com/wp-content/uploads/2024/09/vegan-vanilla-ice-cream-recipe.jpg" },
-  { "id": "cookie", "name": "Chocolate Chip Cookies", "price": 50, "image": "https://thefirstyearblog.com/wp-content/uploads/2024/08/Peanut-Butter-Chocolate-Chip-Cookies-2024.png" },
-  { "id": "cake", "name": "Dark Chocolate Cake", "price": 75, "image": "https://thefirstyearblog.com/wp-content/uploads/2021/02/homemade-chocolate-layer-cake-sqaure.png" },
-  { "id": "blue", "name": "Blueberry Muffins", "price": 80, "image": "https://thefirstyearblog.com/wp-content/uploads/2026/01/Healthy-Blueberry-Muffins-Square-2026.png" },
-  { "id": "peach", "name": "Peach Muffins", "price": 80, "image": "https://thefirstyearblog.com/wp-content/uploads/2025/06/Peach-Muffins-Square-2025-300x300.png" }
-]
