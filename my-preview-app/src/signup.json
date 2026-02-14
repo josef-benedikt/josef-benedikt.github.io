@@ -1,0 +1,8 @@
+{
+  "authorizedUsers": [
+    {
+      "email": "josef@desserts.com",
+      "password": "password123"
+    }
+  ]
+}
