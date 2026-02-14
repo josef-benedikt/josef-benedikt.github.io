@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Desserts by Josef</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header">
+    <img src="https://images.seeklogo.com/logo-png/29/2/sweet-dessert-logo-png_seeklogo-298730.png" class="logo">
+    <h2>Desserts by Josef</h2> 
+    <h3>High Quality and Affordable!</h3>
+    </div>
+</header>
+    
+</body>
+
+    <script>
+    const loginForm = document.querySelector('.form-columns');
+
+    loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent immediate page reload
+
+        const email = document.getElementById('Email').value;
+        const password = document.getElementById('password').value;
+
+        // 1. Basic Validation
+        if (!email || !password) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        try {
+            console.log("Attempting to login...");
+            
+            // 2. Simulated Async API Call
+            const response = await simulateServerRequest({ email, password });
+
+            if (response.success) {
+                alert("Login successful! Redirecting...");
+                window.location.href = "index.html"; // Redirect after success
+            }
+        } catch (error) {
+            alert("Login failed: " + error);
+        }
+    });
+
+    // Function to simulate a network delay
+    function simulateServerRequest(data) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ success: true });
+            }, 1500); // 1.5 second delay
+        });
+    }
+</script>
+
+<nav class="sidebar">
+    <h2>Navigation Bar</h2>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="profile.html">User Profile</a></li>
+    <li><a href="cart.html">Shopping Cart</a></li>
+</nav>
+</nav>
+
+
+<div class="content">
+    <h1>Login to your account</h1>
+
+    <form class="form-columns">
+        <div class="column">
+            <label for="Email">Email Address</label><br>
+            <input type="email" id="Email" name="Email" placeholder="Email"><br><br>
+
+            <label for="Password">Password</label><br>
+            <input type="password" id="password" name="password" placeholder="Password"><br><br>
+
+            <div class="button-container">
+                <button type="button" class="submit"><a href="index.html">Login</a></button>
+                <button type="button" class="submit"><a href="signup.html">No account? Sign up here!</a></button>
+            </div>
+        </div>
+    </form> 
+</div>
+
+<footer>
+    <p class="footer-login">Desserts by Josef - Copyright 2026</p>
+</footer>
+
+</html>

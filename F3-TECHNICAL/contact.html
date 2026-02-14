@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Desserts by Josef</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header">
+    <img src="https://images.seeklogo.com/logo-png/29/2/sweet-dessert-logo-png_seeklogo-298730.png" class="logo">
+    <h2>Desserts by Josef</h2> 
+    <h3>High Quality and Affordable!</h3>
+    </div>
+</header>
+    
+</body>
+
+<nav class="sidebar">
+    <h2>Navigation Bar</h2>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="profile.html">User Profile</a></li>
+    <li><a href="cart.html">Shopping Cart</a></li>
+</nav>
+</nav>
+
+
+
+<div class="content">
+    <h1>Got any questions or feedback? Don't hesitate to reach us out!</h1>
+
+    <form id="contactForm" action="submit_page" method="POST" class="form-columns">
+        <div class="column">
+            <label for="Name">Name</label><br>
+            <input type="text" id="Name" name="Name" placeholder="Name"><br><br>
+
+            <label for="Message">Message</label><br>
+            <textarea id="Message" name="Message" placeholder="Enter your message" rows="5"></textarea>
+            <br><br>
+
+            <div class="button-container">
+                <button type="submit" class="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    const myForm = document.getElementById('contactForm');
+    myForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        alert("Thank you! Your message has been sent.");
+        myForm.reset();
+    });
+</script>
+
+<footer>
+    <p class="footer-contact">Desserts by Josef - Copyright 2026</p>
+</footer>
+</html>
